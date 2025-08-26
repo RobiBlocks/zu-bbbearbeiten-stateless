@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import datetime
+import operator 
 
 todos = []
 
@@ -18,6 +19,7 @@ def add(title, date=None):
     elif isinstance(date, str):
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
     todos.append(Todo(title, date))
+    todos.sort(key=operator.attrgetter('date'))
 
 
 def get_all():
